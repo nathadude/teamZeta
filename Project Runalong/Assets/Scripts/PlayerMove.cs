@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     // Player variables
-    public float MoveSpeed;
+    public FloatSO MoveSpeed;
     public float JumpForce;
     public LayerMask GroundMask;
 
@@ -29,8 +29,6 @@ public class PlayerMove : MonoBehaviour
     private bool startGlide;
     [SerializeField]
     private bool gliding;
-
-    private float currentFloatTime;
 
     // Start is called before the first frame update
     void Start()
@@ -97,7 +95,7 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         // Forward movement speed
-        rb.velocity = new Vector2(MoveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(MoveSpeed.value, rb.velocity.y);
 
         // If a jump was detected in Update, apply jump force then untoggle jump
         if (jump)
