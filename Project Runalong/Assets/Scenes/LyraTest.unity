@@ -288,6 +288,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1664074837 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1175403881688408950, guid: 453e0740bcefd6b4ba789d2423d18a35, type: 3}
+  m_PrefabInstance: {fileID: 5895621764406013121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5895621764406013121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -298,6 +303,14 @@ PrefabInstance:
     - target: {fileID: 5895621763981974136, guid: 453e0740bcefd6b4ba789d2423d18a35, type: 3}
       propertyPath: m_Name
       value: Player_Placeholder
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895621763981974138, guid: 453e0740bcefd6b4ba789d2423d18a35, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 71e144b0535b1134a9941d38c5c72827, type: 2}
+    - target: {fileID: 5895621763981974138, guid: 453e0740bcefd6b4ba789d2423d18a35, type: 3}
+      propertyPath: m_GravityScale
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5895621763981974140, guid: 453e0740bcefd6b4ba789d2423d18a35, type: 3}
       propertyPath: m_RootOrder
@@ -343,6 +356,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5895621763981974143, guid: 453e0740bcefd6b4ba789d2423d18a35, type: 3}
+      propertyPath: JumpForce
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895621763981974143, guid: 453e0740bcefd6b4ba789d2423d18a35, type: 3}
+      propertyPath: SlideTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895621763981974143, guid: 453e0740bcefd6b4ba789d2423d18a35, type: 3}
+      propertyPath: CrouchCollider
+      value: 
+      objectReference: {fileID: 1664074837}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 453e0740bcefd6b4ba789d2423d18a35, type: 3}
 --- !u!1001 &7909578933384732149
