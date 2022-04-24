@@ -16,7 +16,6 @@ public class LevelLoader : MonoBehaviour
     // Data for spawning level chunks
     public Transform LevelPiecesParent;
     public float LevelPieceSpacing; // How wide a level piece is
-    public GameObject BackgroundInstance;
 
     // Private data for tracking next spawn locations
     private GameObject playerInstance;
@@ -27,8 +26,7 @@ public class LevelLoader : MonoBehaviour
     // This list of levelpieces, populated at runtime
     private GameObject[] levelPieces;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Load levelPieces based on the LevelType
         switch(LevelType)
@@ -78,10 +76,6 @@ public class LevelLoader : MonoBehaviour
         // Instantiate it at the right position
         GameObject nextPiece = Instantiate(levelPieces[idx], LevelPiecesParent);
         nextPiece.transform.position = nextPieceLocation;
-
-        // Also spawn background behind it
-        // TODO: This will be changed when we do bg parallax
-        Instantiate(BackgroundInstance, nextPiece.transform);
 
         // If more than 3 pieces, destroy the earliest one
         if (LevelPiecesParent.childCount > 3)
