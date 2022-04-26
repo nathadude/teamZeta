@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.mixpanel.unity": {
+      "version": "https://github.com/mixpanel/mixpanel-unity.git#master",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0c55cccc1b76f0e9a09b46c057b54905e0759f66"
+    },
     "com.unity.2d.animation": {
       "version": "5.2.0",
       "depth": 0,
