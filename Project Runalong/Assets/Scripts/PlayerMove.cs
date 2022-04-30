@@ -17,13 +17,15 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer playerSprite;
     private float defaultGravity;
-    public BoxCollider2D MainCollider;
-    public BoxCollider2D CrouchCollider;
+    public CapsuleCollider2D MainCollider;
+    public CapsuleCollider2D CrouchCollider;
+    public Animator AC;
 
     // Tracking player state
     [SerializeField]
     private bool isGrounded;
     private bool jump;
+    private float justJumped;
     [SerializeField]
     private bool sliding;
     private bool startFastFall;
@@ -48,9 +50,12 @@ public class PlayerMove : MonoBehaviour
     {
         if (Paused.value) return;
         // Raycast down to see if player is grounded, set variable
-        BoxCollider2D activeCollider = sliding ? CrouchCollider : MainCollider;
+        CapsuleCollider2D activeCollider = sliding ? CrouchCollider : MainCollider;
         RaycastHit2D raycast = Physics2D.Raycast(activeCollider.bounds.center, Vector2.down, activeCollider.bounds.extents.y + 0.1f, GroundMask);
         isGrounded = raycast.collider != null;
+
+
+        AC.SetFloat("VelocityY", rb.velocity.y);
 
         // Cancel fastfalling if player lands
         if (isGrounded && fastfalling)
@@ -72,6 +77,7 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetMouseButton(0) && !fastfalling && !isGrounded && !gliding && rb.velocity.y <= 0)
         {
             startGlide = true;
+            AC.SetBool("Gliding", true);
         } else if (gliding && !Input.GetMouseButton(0))
         {
             stopGliding();
@@ -81,6 +87,7 @@ public class PlayerMove : MonoBehaviour
         // Allow if: Holding slide, not already sliding or jumping, is grounded
         if (Input.GetMouseButton(1) && isGrounded && !jump && !sliding)
         {
+            AC.SetBool("Sliding", true);
             startSliding();
 
         } else if (!Input.GetMouseButton(1) && sliding)
@@ -119,12 +126,16 @@ public class PlayerMove : MonoBehaviour
 
         if (startGlide)
         {
-            startGliding();
+            startGlide = false;
+            gliding = true;
+            //rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.gravityScale = 0.5f;
         }
     }
 
     private void startSliding()
     {
+        AC.SetBool("Sliding", true);
         sliding = true;
         MainCollider.enabled = false;
         CrouchCollider.enabled = true;
@@ -132,23 +143,26 @@ public class PlayerMove : MonoBehaviour
     }
     private void stopSliding()
     {
+        AC.SetBool("Sliding", false);
         sliding = false;
         MainCollider.enabled = true;
         CrouchCollider.enabled = false;
         playerSprite.transform.localScale = new Vector3(1, 1);
     }
 
-    private void startGliding()
-    {
-        startGlide = false;
-        gliding = true;
-        rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.gravityScale = 0.5f;
-    }
-
     private void stopGliding()
     {
+        AC.SetBool("Gliding", false);
         gliding = false;
         rb.gravityScale = defaultGravity;
     }
+
+/*    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && justJumped <= 0)
+        {
+            Debug.Log("Landed on ground");
+            AC.SetBool("Jumping", false);
+        }
+    }*/
 }

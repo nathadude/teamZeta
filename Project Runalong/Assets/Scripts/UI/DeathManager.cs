@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
+using mixpanel;
 
 public class DeathManager : MonoBehaviour
 {

@@ -21,14 +21,21 @@ public class SessionLengthLogging : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         // Start session, dontdestroy
+        Debug.Log("MIXPANEL: Logging Session Start and Start Session Timer");
         Mixpanel.Track("Session start");
         Mixpanel.StartTimedEvent("Session Length");
     }
 
     private void OnApplicationQuit()
     {
-        Debug.Log("Session over, logging length");
+        Debug.Log("MIXPANEL: Logging Session End");
         // Log session over
         Mixpanel.Track("Session Length");
+        Mixpanel.Flush();
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        Mixpanel.Flush();
     }
 }

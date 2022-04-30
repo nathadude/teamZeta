@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using mixpanel;
 
 public class PlayerDamage : MonoBehaviour
 {
@@ -13,6 +12,13 @@ public class PlayerDamage : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
             if (invicible) return;
+           
+            // Mixpanel logging
+            Value props = new Value();
+            props["CauseOfDeath"] = collision.gameObject.name;
+            props["LevelSegment"] = collision.transform.parent.name;
+            Mixpanel.Track("Death", props);
+            
             GameOver.value = true;
             Destroy(gameObject);
         }

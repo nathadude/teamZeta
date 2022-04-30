@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using mixpanel;
 
-// Given the LevelType passed, picks a folder from Resources and uses those prefabs to generate levels endlessly
+// Given the LevelID passed, picks a folder from Resources and uses those prefabs to generate levels endlessly
 public class LevelLoader : MonoBehaviour
 {
-    public float LevelType = 0; // 0 = placeholder
+    public IntSO LevelID;
     
     [Space]
     // Data for spawning player
@@ -25,17 +26,23 @@ public class LevelLoader : MonoBehaviour
 
     // This list of levelpieces, populated at runtime
     private GameObject[] levelPieces;
+    private GameObject startPiece;
 
     void Awake()
     {
         // Load levelPieces based on the LevelType
-        switch(LevelType)
+        switch(LevelID.value)
         {
+            case -1: // Test
+                levelPieces = Resources.LoadAll<GameObject>("Test");
+                startPiece = Resources.Load<GameObject>("Start/ground1");
+                break;
             case 0: // Placeholder
                 levelPieces = Resources.LoadAll<GameObject>("Placeholder");
+                startPiece = Resources.Load<GameObject>("Start/ground1");
                 break;
             default:
-                Debug.LogError("Error: No level pieces found for LevelType " + LevelType);
+                Debug.LogError("Error: No level pieces found for LevelType " + LevelID.value);
                 break;
         }
 
@@ -45,13 +52,12 @@ public class LevelLoader : MonoBehaviour
         nextPieceSpacing = new Vector3(LevelPieceSpacing, 0, 0);
 
         // Spawn the first 2 pieces. First one will be the default piece, next random
-        spawnNextPiece(0);
+        spawnPiece(startPiece);
         spawnNextPiece();
         loadNextLocation = LevelPieceSpacing / 2;
 
         // Spawn player
         playerInstance = Instantiate(PlayerPrefab, SpawnPoint, Quaternion.identity);
-
     }
 
     // Update is called once per frame
@@ -73,8 +79,14 @@ public class LevelLoader : MonoBehaviour
         if (idx < 0)
             idx = Random.Range(0, levelPieces.Length);
 
+        spawnPiece(levelPieces[idx]);
+    }
+
+    // Spawns a specific piece
+    private void spawnPiece(GameObject piece)
+    {
         // Instantiate it at the right position
-        GameObject nextPiece = Instantiate(levelPieces[idx], LevelPiecesParent);
+        GameObject nextPiece = Instantiate(piece, LevelPiecesParent);
         nextPiece.transform.position = nextPieceLocation;
 
         // If more than 3 pieces, destroy the earliest one
