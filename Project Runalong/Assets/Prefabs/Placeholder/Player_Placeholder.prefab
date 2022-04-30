@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5895621763981974139}
   - component: {fileID: 1175403881688408950}
   - component: {fileID: 5895621763981974143}
+  - component: {fileID: 2235930622761389100}
   - component: {fileID: 62582752291014266}
   m_Layer: 6
   m_Name: Player_Placeholder
@@ -203,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d3272865ccded488a4f826c47b00b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Paused: {fileID: 11400000, guid: e884e7fd8c8e7ec44a8b2ded0a389911, type: 2}
   MoveSpeed: {fileID: 11400000, guid: 9b7d270ddeeff7a4ea02c946666ce97b, type: 2}
   JumpForce: 30
   GroundMask:
@@ -214,6 +216,21 @@ MonoBehaviour:
   sliding: 0
   fastfalling: 0
   gliding: 0
+--- !u!114 &2235930622761389100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5895621763981974136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc53fd486e9571c4a928d65b40eb2ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TripMileage: {fileID: 11400000, guid: 017de5cffb97db140810586c85af450a, type: 2}
+  HighScore: {fileID: 11400000, guid: f3e65dd434d1f914ba8421dc19546753, type: 2}
+  ResetScore: 0
 --- !u!114 &62582752291014266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,4 +243,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e648f75397d2b4c94a975320faefc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  invicible: 0
+  GameOver: {fileID: 11400000, guid: 4adc6cd871847104ea0fd09a8a2a0c09, type: 2}

@@ -5,11 +5,23 @@ using mixpanel;
 
 public class SessionLengthLogging : MonoBehaviour
 {
+    static SessionLengthLogging instance;
+
     private void Awake()
     {
+        if (instance != null)
+        {
+            Debug.Log("Already present - destroying");
+            Destroy(gameObject);
+            return;
+        } else
+        {
+            instance = this;
+        }
+
+        DontDestroyOnLoad(gameObject);
         // Start session, dontdestroy
         Mixpanel.Track("Session start");
-        DontDestroyOnLoad(gameObject);
         Mixpanel.StartTimedEvent("Session Length");
     }
 

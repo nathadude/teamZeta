@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    // External forces
+    public BoolSO Paused;
+
     // Player variables
     public FloatSO MoveSpeed;
     public float JumpForce;
@@ -43,6 +46,7 @@ public class PlayerMove : MonoBehaviour
     // TODO: Generalize controls if it needs to be used on mobile too
     void Update()
     {
+        if (Paused.value) return;
         // Raycast down to see if player is grounded, set variable
         BoxCollider2D activeCollider = sliding ? CrouchCollider : MainCollider;
         RaycastHit2D raycast = Physics2D.Raycast(activeCollider.bounds.center, Vector2.down, activeCollider.bounds.extents.y + 0.1f, GroundMask);
