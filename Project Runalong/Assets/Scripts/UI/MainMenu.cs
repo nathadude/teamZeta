@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     public CanvasGroup MainPanel;
     public CanvasGroup ControlPanel;
+    public CanvasGroup LevelSelectPanel;
 
     private void Start()
     {
@@ -16,6 +18,19 @@ public class MainMenu : MonoBehaviour
         MainPanel.alpha = 1;
         MainPanel.blocksRaycasts = true;
         MainPanel.interactable = true;
+
+        LevelSelectPanel.alpha = 0;
+        LevelSelectPanel.blocksRaycasts = false;
+        LevelSelectPanel.interactable = false;
+    }
+    public void LoadLevel(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void LoadTestLevel()
+    {
+        LoadLevel("LyraTest");
     }
 
     public void OpenControlPanel()
@@ -26,6 +41,16 @@ public class MainMenu : MonoBehaviour
     public void CloseControlPanel()
     {
         TogglePanel(ControlPanel, MainPanel);
+    }
+
+    public void OpenLevelSelect()
+    {
+        TogglePanel(MainPanel, LevelSelectPanel);
+    }
+
+    public void CloseLevelSelect()
+    {
+        TogglePanel(LevelSelectPanel, MainPanel);
     }
 
     public void QuitGame()
