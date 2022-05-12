@@ -27,19 +27,22 @@ public class LevelLoader : MonoBehaviour
     // This list of levelpieces, populated at runtime
     private GameObject[] levelPieces;
     private GameObject startPiece;
+    private GameObject backgroundContainer;
 
     void Awake()
     {
-        // Load levelPieces based on the LevelType
+        // Load levelPieces and background based on the LevelType
         switch(LevelID.value)
         {
             case -1: // Test
                 levelPieces = Resources.LoadAll<GameObject>("Test");
                 startPiece = Resources.Load<GameObject>("Start/ground1");
+                backgroundContainer = Resources.Load<GameObject>("Backgrounds/TestBG");
                 break;
             case 0: // Placeholder
                 levelPieces = Resources.LoadAll<GameObject>("Placeholder");
                 startPiece = Resources.Load<GameObject>("Start/ground1");
+                backgroundContainer = Resources.Load<GameObject>("Backgrounds/ForestBG");
                 break;
             default:
                 Debug.LogError("Error: No level pieces found for LevelType " + LevelID.value);
@@ -47,6 +50,10 @@ public class LevelLoader : MonoBehaviour
         }
 
         Debug.Log("Loaded " + levelPieces.Length + " Level pieces");
+
+        // Load in background and attach to main camera
+        GameObject mainCam = GameObject.FindGameObjectWithTag("MainCamera");
+        Instantiate(backgroundContainer, mainCam.transform);
 
         nextPieceLocation = new Vector3(0, -1, 0);
         nextPieceSpacing = new Vector3(LevelPieceSpacing, 0, 0);
