@@ -24,6 +24,7 @@ public class PlayerMove : MonoBehaviour
     // Tracking player state
     [SerializeField]
     private bool isGrounded;
+    private bool wasGrounded; // whether it was grounded the frame before
     private bool jump;
     private float justJumped;
     [SerializeField]
@@ -34,13 +35,14 @@ public class PlayerMove : MonoBehaviour
     private bool startGlide;
     [SerializeField]
     private bool gliding;
+    private bool alreadyGlided;
 
     //jmpbffr
     private float jumpBufferCounter;
     public float jumpBufferTime;
 
     //cyt time
-    private float coyoteTimeCounter;
+    private float coyoteTimeRemaining;
     public float coyoteTime;
 
     // Start is called before the first frame update
@@ -65,19 +67,31 @@ public class PlayerMove : MonoBehaviour
 
         AC.SetFloat("VelocityY", rb.velocity.y);
 
+        // Logic when player just landed
+        if (!wasGrounded && isGrounded)
+        {
+            alreadyGlided = false;
+            if (gliding)
+            {
+                stopGliding();
+            }
+        }
+
+        // If player just left the ground, start coyoteTime
+        if (wasGrounded && !isGrounded)
+        {
+            coyoteTimeRemaining = coyoteTime;
+        }
+
+        if (coyoteTimeRemaining > 0)
+        {
+            coyoteTimeRemaining -= Time.deltaTime;
+        }
+
         // Cancel fastfalling if player lands
         if (isGrounded && fastfalling)
         {
             fastfalling = false;
-        }
-
-        if (isGrounded)
-        {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
         }
 
         //if jump set counter else count down
@@ -92,17 +106,18 @@ public class PlayerMove : MonoBehaviour
 
         // Check to see if player pressed a jump key
         // Allow if: Pressed jump, grounded
-        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
+        if (jumpBufferCounter > 0f && (isGrounded || coyoteTimeRemaining > 0f))
         {
             jump = true;
             stopSliding();
-            //coyoteTimeCounter = 0f;
+            jumpBufferCounter = 0;
+            coyoteTimeRemaining = 0;
         }
 
 
         // Check to see if player wants to glide
         // Allow if: Holding jump, not fastfalling grounded or gliding, and is descending
-        if (Input.GetMouseButton(0) && !(coyoteTimeCounter > 0) && !(jumpBufferCounter > 0) && !fastfalling && !isGrounded && !gliding && rb.velocity.y <= 0)
+        if (Input.GetMouseButton(0) && coyoteTimeRemaining <= 0 && !jump && !fastfalling && !isGrounded && !gliding && rb.velocity.y <= 0)
         {
             startGlide = true;
             AC.SetBool("Gliding", true);
@@ -130,6 +145,8 @@ public class PlayerMove : MonoBehaviour
         {
             startFastFall = true;
         }
+
+        wasGrounded = isGrounded;
     }
 
     private void FixedUpdate()
@@ -141,9 +158,8 @@ public class PlayerMove : MonoBehaviour
         if (jump)
         {
             jump = false;
+            rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
-            coyoteTimeCounter = 0f;
-            jumpBufferCounter = 0f;
         }
 
         if (startFastFall)
@@ -159,8 +175,11 @@ public class PlayerMove : MonoBehaviour
         {
             startGlide = false;
             gliding = true;
-            //rb.velocity = new Vector2(rb.velocity.x, 0);
+            // Half your y-velocity only once per jump so it can't be spammed
+            if (!alreadyGlided)
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 4);
             rb.gravityScale = 0.5f;
+            alreadyGlided = true;
         }
     }
 
