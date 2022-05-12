@@ -58,9 +58,17 @@ public class LevelLoader : MonoBehaviour
         nextPieceLocation = new Vector3(0, -1, 0);
         nextPieceSpacing = new Vector3(LevelPieceSpacing, 0, 0);
 
-        // Spawn the first 2 pieces. First one will be the default piece, next random
+        // Spawn the first 2 pieces. First one will be the default piece, next is tutorial piece if forest, random otherwise
         spawnPiece(startPiece);
-        spawnNextPiece();
+        if (LevelID.value == 0 || LevelID.value == 1)
+        {
+            GameObject tutorialPiece = Resources.Load<GameObject>("Tutorial/T1");
+            spawnPiece(tutorialPiece);
+        } else
+        {
+            spawnNextPiece();
+        }
+
         loadNextLocation = LevelPieceSpacing / 2;
 
         // Spawn player

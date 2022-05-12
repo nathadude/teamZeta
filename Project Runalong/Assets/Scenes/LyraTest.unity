@@ -809,6 +809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOver: {fileID: 11400000, guid: 4adc6cd871847104ea0fd09a8a2a0c09, type: 2}
   LevelID: {fileID: 11400000, guid: 56bd46842ef2b9c47a1336817b73f00d, type: 2}
+  Mileage: {fileID: 11400000, guid: 017de5cffb97db140810586c85af450a, type: 2}
 --- !u!1001 &636137962
 PrefabInstance:
   m_ObjectHideFlags: 0
