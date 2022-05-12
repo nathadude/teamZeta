@@ -35,6 +35,14 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private bool gliding;
 
+    //jmpbffr
+    private float jumpBufferCounter;
+    public float jumpBufferTime;
+
+    //cyt time
+    private float coyoteTimeCounter;
+    public float coyoteTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,24 +71,45 @@ public class PlayerMove : MonoBehaviour
             fastfalling = false;
         }
 
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        //if jump set counter else count down
+        if (Input.GetMouseButtonDown(0))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
         // Check to see if player pressed a jump key
         // Allow if: Pressed jump, grounded
-        if (Input.GetMouseButtonDown(0) && isGrounded)
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
             jump = true;
             stopSliding();
+            //coyoteTimeCounter = 0f;
         }
 
 
         // Check to see if player wants to glide
         // Allow if: Holding jump, not fastfalling grounded or gliding, and is descending
-        if (Input.GetMouseButton(0) && !fastfalling && !isGrounded && !gliding && rb.velocity.y <= 0)
+        if (Input.GetMouseButton(0) && !(coyoteTimeCounter > 0) && !(jumpBufferCounter > 0) && !fastfalling && !isGrounded && !gliding && rb.velocity.y <= 0)
         {
             startGlide = true;
             AC.SetBool("Gliding", true);
         } else if (gliding && !Input.GetMouseButton(0))
         {
             stopGliding();
+            
         }
 
         // Check to see if player wants to slide, or stop sliding
@@ -113,6 +142,8 @@ public class PlayerMove : MonoBehaviour
         {
             jump = false;
             rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+            coyoteTimeCounter = 0f;
+            jumpBufferCounter = 0f;
         }
 
         if (startFastFall)
