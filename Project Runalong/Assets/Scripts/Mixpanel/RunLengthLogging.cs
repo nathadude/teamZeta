@@ -6,6 +6,7 @@ public class RunLengthLogging : MonoBehaviour
 {
     public BoolSO GameOver;
     public IntSO LevelID;
+    public FloatSO Mileage;
     private bool logged;
 
     private void Start()
@@ -23,6 +24,7 @@ public class RunLengthLogging : MonoBehaviour
             Debug.Log("MIXPANEL: Ending Run Timer");
             var props = new Value();
             props["Level ID"] = LevelID.value;
+            props["Mileage"] = Mileage.value;
             Mixpanel.Track("Run Length", props);
             logged = true;
         }
