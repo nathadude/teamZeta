@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class PauseManager : MonoBehaviour
     private void Awake()
     {
         Paused.value = false;
-
+        PausePanel.interactable = false;
+        PausePanel.blocksRaycasts = false;
     }
 
     // Update is called once per frame
@@ -29,10 +31,20 @@ public class PauseManager : MonoBehaviour
         {
             PausePanel.alpha = 1;
             Time.timeScale = 0;
+            PausePanel.interactable = true;
+            PausePanel.blocksRaycasts = true;
         } else
         {
             PausePanel.alpha = 0;
             Time.timeScale = 1;
+            PausePanel.interactable = false;
+            PausePanel.blocksRaycasts = false;
         }
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 }

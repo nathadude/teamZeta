@@ -17,6 +17,7 @@ public class DeathManager : MonoBehaviour
     {
         GameOver.value = false;
         DeathPanel.interactable = false;
+        DeathPanel.blocksRaycasts = false;
         DeathPanel.alpha = 0;
     }
 
@@ -30,6 +31,7 @@ public class DeathManager : MonoBehaviour
             MileageText.text = "Distance Traveled: " + Mileage.value.ToString("0.00");
 
             DeathPanel.interactable = true;
+            DeathPanel.blocksRaycasts = true;
             DeathPanel.alpha = 1;
         }
     }
@@ -37,5 +39,10 @@ public class DeathManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

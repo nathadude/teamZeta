@@ -23,15 +23,7 @@ public class MainMenu : MonoBehaviour
         LevelSelectPanel.blocksRaycasts = false;
         LevelSelectPanel.interactable = false;
     }
-    public void LoadLevel(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
 
-    public void LoadTestLevel()
-    {
-        LoadLevel("LyraTest");
-    }
 
     public void OpenControlPanel()
     {
