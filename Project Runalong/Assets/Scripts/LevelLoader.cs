@@ -37,7 +37,7 @@ public class LevelLoader : MonoBehaviour
             case -1: // Test
                 levelPieces = Resources.LoadAll<GameObject>("Test");
                 startPiece = Resources.Load<GameObject>("Start/ground1");
-                backgroundContainer = Resources.Load<GameObject>("Backgrounds/TestBG");
+                backgroundContainer = Resources.Load<GameObject>("Backgrounds/OceanBG");
                 break;
             case 0: // Placeholder
                 levelPieces = Resources.LoadAll<GameObject>("Placeholder");

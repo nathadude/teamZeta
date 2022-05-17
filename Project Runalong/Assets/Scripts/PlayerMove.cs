@@ -71,6 +71,7 @@ public class PlayerMove : MonoBehaviour
         if (!wasGrounded && isGrounded)
         {
             alreadyGlided = false;
+            AC.SetBool("Jump", false);
             if (gliding)
             {
                 stopGliding();
@@ -108,6 +109,7 @@ public class PlayerMove : MonoBehaviour
         // Allow if: Pressed jump, grounded
         if (jumpBufferCounter > 0f && (isGrounded || coyoteTimeRemaining > 0f))
         {
+            AC.SetBool("Jump", true);
             jump = true;
             stopSliding();
             jumpBufferCounter = 0;
@@ -189,7 +191,7 @@ public class PlayerMove : MonoBehaviour
         sliding = true;
         MainCollider.enabled = false;
         CrouchCollider.enabled = true;
-        playerSprite.transform.localScale = new Vector3(1, 0.5f);
+        //playerSprite.transform.localScale = new Vector3(1, 0.5f);
     }
     private void stopSliding()
     {

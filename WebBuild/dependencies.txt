@@ -1,3 +1,5 @@
+com.lootlocker.lootlockersdk@1.1.20
+com.mixpanel.unity@3.1.0
 com.unity.2d.animation@5.2.0
 com.unity.2d.pixel-perfect@4.0.1
 com.unity.2d.psdimporter@4.3.0
@@ -44,5 +46,4 @@ com.unity.modules.video@1.0.0
 com.unity.modules.vr@1.0.0
 com.unity.modules.wind@1.0.0
 com.unity.modules.xr@1.0.0
-com.mixpanel.unity@3.1.0
 com.unity.template.2d@5.0.1
