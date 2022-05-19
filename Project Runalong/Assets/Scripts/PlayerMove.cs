@@ -52,6 +52,7 @@ public class PlayerMove : MonoBehaviour
         playerSprite = GetComponentInChildren<SpriteRenderer>();
         defaultGravity = rb.gravityScale;
         stopSliding();
+        //Time.timeScale = 0.05f;
     }
 
     // Update is called once per frame
@@ -79,8 +80,9 @@ public class PlayerMove : MonoBehaviour
         }
 
         // If player just left the ground, start coyoteTime
-        if (wasGrounded && !isGrounded)
+        if (justJumped <= 0 && wasGrounded && !isGrounded)
         {
+            Debug.Log(justJumped + " " + wasGrounded + " " + isGrounded);
             coyoteTimeRemaining = coyoteTime;
         }
 
@@ -105,12 +107,19 @@ public class PlayerMove : MonoBehaviour
             jumpBufferCounter -= Time.deltaTime;
         }
 
+        if (justJumped >= 0)
+        {
+            justJumped -= Time.deltaTime;
+        }
+
         // Check to see if player pressed a jump key
         // Allow if: Pressed jump, grounded
         if (jumpBufferCounter > 0f && (isGrounded || coyoteTimeRemaining > 0f))
         {
+            Debug.Log(jumpBufferCounter + " " + isGrounded + " " + coyoteTimeRemaining);
             AC.SetBool("Jump", true);
             jump = true;
+            justJumped = coyoteTime;
             stopSliding();
             jumpBufferCounter = 0;
             coyoteTimeRemaining = 0;
