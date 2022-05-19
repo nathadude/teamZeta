@@ -82,7 +82,6 @@ public class PlayerMove : MonoBehaviour
         // If player just left the ground, start coyoteTime
         if (justJumped <= 0 && wasGrounded && !isGrounded)
         {
-            Debug.Log(justJumped + " " + wasGrounded + " " + isGrounded);
             coyoteTimeRemaining = coyoteTime;
         }
 
@@ -116,7 +115,6 @@ public class PlayerMove : MonoBehaviour
         // Allow if: Pressed jump, grounded
         if (jumpBufferCounter > 0f && (isGrounded || coyoteTimeRemaining > 0f))
         {
-            Debug.Log(jumpBufferCounter + " " + isGrounded + " " + coyoteTimeRemaining);
             AC.SetBool("Jump", true);
             jump = true;
             justJumped = coyoteTime;
