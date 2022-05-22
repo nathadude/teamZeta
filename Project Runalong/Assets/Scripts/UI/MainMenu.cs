@@ -8,20 +8,28 @@ public class MainMenu : MonoBehaviour
     public CanvasGroup MainPanel;
     public CanvasGroup ControlPanel;
     public CanvasGroup LevelSelectPanel;
+    public CanvasGroup LeaderboardPanel;
 
-    private void Start()
+    private CanvasGroup[] AllGroups;
+
+    private void Awake()
     {
-        ControlPanel.alpha = 0;
-        ControlPanel.blocksRaycasts = false;
-        ControlPanel.interactable = false;
+        AllGroups = new CanvasGroup[]{
+            MainPanel,
+            ControlPanel,
+            LevelSelectPanel,
+            LeaderboardPanel
+        };
 
+        for (int i = 1; i < AllGroups.Length; i++)
+        {
+            AllGroups[i].alpha = 0;
+            AllGroups[i].blocksRaycasts = false;
+            AllGroups[i].interactable = false;
+        }
         MainPanel.alpha = 1;
         MainPanel.blocksRaycasts = true;
         MainPanel.interactable = true;
-
-        LevelSelectPanel.alpha = 0;
-        LevelSelectPanel.blocksRaycasts = false;
-        LevelSelectPanel.interactable = false;
     }
 
 
@@ -43,6 +51,16 @@ public class MainMenu : MonoBehaviour
     public void CloseLevelSelect()
     {
         TogglePanel(LevelSelectPanel, MainPanel);
+    }
+
+    public void OpenLeaderboard()
+    {
+        TogglePanel(MainPanel, LeaderboardPanel);
+    }
+
+    public void CloseLeaderboard()
+    {
+        TogglePanel(LeaderboardPanel, MainPanel);
     }
 
     public void QuitGame()
