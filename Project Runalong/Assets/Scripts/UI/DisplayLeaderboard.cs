@@ -5,6 +5,7 @@ using TMPro;
 
 public class DisplayLeaderboard : MonoBehaviour
 {
+    public bool ShowOnStartup;
     public TextMeshProUGUI[] Entries;
     public TextMeshProUGUI LevelTitle;
     public Button NextButton;
@@ -18,7 +19,7 @@ public class DisplayLeaderboard : MonoBehaviour
             if (response.success)
             {
                 Debug.Log("Successfully started Leaderboard Session");
-                ShowScores(10);
+                if (ShowOnStartup) ShowScores(10);
             }
             else
             {
@@ -66,9 +67,9 @@ public class DisplayLeaderboard : MonoBehaviour
         ShowScores(10);
     }
 
-    public void ShowLevelScores(int levelIdx)
+    public void ShowLevelScores(IntSO levelIdx)
     {
-        currentLeaderboard = levelIdx;
+        currentLeaderboard = levelIdx.value;
         ShowScores(10);
     }
 
@@ -83,7 +84,8 @@ public class DisplayLeaderboard : MonoBehaviour
 
                 for (int i = 0; i < scores.Length; i++)
                 {
-                    Entries[i].text = (i + 1 + ") " + scores[i].member_id + ":     " + scores[i].score);
+                    string milesText = (scores[i].score / 100f).ToString("0.00");
+                    Entries[i].text = (i + 1 + ") " + scores[i].member_id + ":     " + milesText);
                 }
 
 
