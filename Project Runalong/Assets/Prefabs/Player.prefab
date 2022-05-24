@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Paused: {fileID: 11400000, guid: e884e7fd8c8e7ec44a8b2ded0a389911, type: 2}
+  HoldToggle: {fileID: 11400000, guid: a759a262873d3fb488313ac792439b51, type: 2}
   MoveSpeed: {fileID: 11400000, guid: 9b7d270ddeeff7a4ea02c946666ce97b, type: 2}
   JumpForce: 35
   GroundMask:
@@ -213,10 +214,8 @@ MonoBehaviour:
   MainCollider: {fileID: 5949132253381777417}
   CrouchCollider: {fileID: 4558340475213781378}
   AC: {fileID: 4331467402416197234}
-  isGrounded: 0
-  sliding: 0
-  fastfalling: 0
-  gliding: 0
+  LclickHold: 0
+  RclickHold: 0
   jumpBufferTime: 0.1
   coyoteTime: 0.15
 --- !u!114 &2235930622761389100

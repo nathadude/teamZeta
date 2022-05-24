@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     // External forces
     public BoolSO Paused;
+    public BoolSO HoldToggle; // If true, clicking will toggle the hold state
 
     // Player variables
     public FloatSO MoveSpeed;
@@ -22,20 +23,26 @@ public class PlayerMove : MonoBehaviour
     public Animator AC;
 
     // Tracking player state
-    [SerializeField]
     private bool isGrounded;
     private bool wasGrounded; // whether it was grounded the frame before
+
     private bool jump;
     private float justJumped;
-    [SerializeField]
+
     private bool sliding;
+
     private bool startFastFall;
-    [SerializeField]
     private bool fastfalling;
+
     private bool startGlide;
-    [SerializeField]
     private bool gliding;
     private bool alreadyGlided;
+
+    // Hold toggle variables
+    [SerializeField]
+    private bool LclickHold;
+    [SerializeField]
+    private bool RclickHold;
 
     //jmpbffr
     private float jumpBufferCounter;
@@ -60,11 +67,39 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         if (Paused.value) return;
+
         // Raycast down to see if player is grounded, set variable
         CapsuleCollider2D activeCollider = sliding ? CrouchCollider : MainCollider;
         RaycastHit2D raycast = Physics2D.Raycast(activeCollider.bounds.center, Vector2.down, activeCollider.bounds.extents.y + 0.1f, GroundMask);
         isGrounded = raycast.collider != null;
 
+        // Holdtoggle info!
+        if (HoldToggle.value)
+        {
+            // Start "holding" the lclick if it is pressed while not grounded
+            if (!isGrounded && Input.GetMouseButtonDown(0))
+            {
+                LclickHold = !LclickHold;
+            }
+
+            // Cancel jump hold on landing
+            if (!wasGrounded && isGrounded)
+            {
+                LclickHold = false;
+            }
+
+            // Start "holding" rclick if pressed on ground
+            if (isGrounded && Input.GetMouseButtonDown(1))
+            {
+                RclickHold = !RclickHold;
+            }
+
+            // Cancel slide hold on jump
+            if (!isGrounded)
+            {
+                RclickHold = false;
+            }
+        }
 
         AC.SetFloat("VelocityY", rb.velocity.y);
 
@@ -126,11 +161,12 @@ public class PlayerMove : MonoBehaviour
 
         // Check to see if player wants to glide
         // Allow if: Holding jump, not fastfalling grounded or gliding, and is descending
-        if (Input.GetMouseButton(0) && coyoteTimeRemaining <= 0 && !jump && !fastfalling && !isGrounded && !gliding && rb.velocity.y <= 0)
+        if (((!HoldToggle.value && Input.GetMouseButton(0)) || (HoldToggle.value && LclickHold)) && 
+            coyoteTimeRemaining <= 0 && !jump && !fastfalling && !isGrounded && !gliding && rb.velocity.y <= 0)
         {
             startGlide = true;
             AC.SetBool("Gliding", true);
-        } else if (gliding && !Input.GetMouseButton(0))
+        } else if (gliding && ((!HoldToggle.value && !Input.GetMouseButton(0)) || (HoldToggle.value && !LclickHold)))
         {
             stopGliding();
             
@@ -138,12 +174,13 @@ public class PlayerMove : MonoBehaviour
 
         // Check to see if player wants to slide, or stop sliding
         // Allow if: Holding slide, not already sliding or jumping, is grounded
-        if (Input.GetMouseButton(1) && isGrounded && !jump && !sliding)
+        if (((!HoldToggle.value && Input.GetMouseButton(1)) || (HoldToggle.value && RclickHold)) && 
+            isGrounded && !jump && !sliding)
         {
             AC.SetBool("Sliding", true);
             startSliding();
 
-        } else if (!Input.GetMouseButton(1) && sliding)
+        } else if (((!HoldToggle.value && !Input.GetMouseButton(1)) || (HoldToggle.value && !RclickHold)) && sliding)
         {
             stopSliding();
         }
