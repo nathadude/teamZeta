@@ -161,12 +161,12 @@ public class PlayerMove : MonoBehaviour
 
         // Check to see if player wants to glide
         // Allow if: Holding jump, not fastfalling grounded or gliding, and is descending
-        if (((!HoldToggle.value && Input.GetButtonDown("Jump")) || (HoldToggle.value && LclickHold)) && 
+        if (((!HoldToggle.value && Input.GetButton("Jump")) || (HoldToggle.value && LclickHold)) && 
             coyoteTimeRemaining <= 0 && !jump && !fastfalling && !isGrounded && !gliding && rb.velocity.y <= 0)
         {
             startGlide = true;
             AC.SetBool("Gliding", true);
-        } else if (gliding && ((!HoldToggle.value && !Input.GetButtonDown("Jump")) || (HoldToggle.value && !LclickHold)))
+        } else if (gliding && ((!HoldToggle.value && !Input.GetButton("Jump")) || (HoldToggle.value && !LclickHold)))
         {
             stopGliding();
             
@@ -174,13 +174,13 @@ public class PlayerMove : MonoBehaviour
 
         // Check to see if player wants to slide, or stop sliding
         // Allow if: Holding slide, not already sliding or jumping, is grounded
-        if (((!HoldToggle.value && Input.GetButtonDown("Slide")) || (HoldToggle.value && RclickHold)) && 
+        if (((!HoldToggle.value && Input.GetButton("Slide")) || (HoldToggle.value && RclickHold)) && 
             isGrounded && !jump && !sliding)
         {
             AC.SetBool("Sliding", true);
             startSliding();
 
-        } else if (((!HoldToggle.value && !Input.GetButtonDown("Slide")) || (HoldToggle.value && !RclickHold)) && sliding)
+        } else if (((!HoldToggle.value && !Input.GetButton("Slide")) || (HoldToggle.value && !RclickHold)) && sliding)
         {
             stopSliding();
         }
