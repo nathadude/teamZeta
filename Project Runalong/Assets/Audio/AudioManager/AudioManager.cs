@@ -1,6 +1,7 @@
 using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class AudioManager : MonoBehaviour
 	public Sound[] sounds;
 
 	private AudioSource activeSong;
+	private AudioSource stoppableTrack;
 
 	void Awake()
 	{
@@ -113,5 +115,53 @@ public class AudioManager : MonoBehaviour
 
 		s.source.Play();
 	}
+
+	// Play a track that can be stopped later with StopStoppableTrack.
+	// Do not play more than one stoppable track at a time.
+	public void PlayStoppableTrack(string sound)
+	{
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + name + " not found!");
+			return;
+		}
+
+		s.source.volume = s.volume;
+		s.source.pitch = s.pitch;
+
+		//Debug.Log("Play track");
+		stoppableTrack = s.source;
+		s.source.Play();
+	}
+
+	public void StopStoppableTrack()
+	{
+		if (stoppableTrack == null) return;
+		stoppableTrack.Stop();
+		stoppableTrack = null;
+	}
+
+	public void FadeOutStoppableTrack()
+    {
+		if (stoppableTrack == null) return;
+		StartCoroutine(FadeOut(stoppableTrack, 0.25f));
+	}
+
+	// Fades out for fadeTime, or until a new stoppable track is started
+	IEnumerator FadeOut(AudioSource source, float fadeTime)
+    {
+		//Debug.Log("Fading out");
+		stoppableTrack = null;
+		float startVolume = source.volume;
+		while (source.volume > 0 && stoppableTrack == null)
+        {
+			source.volume -= startVolume * Time.deltaTime / fadeTime;
+			yield return null;
+        }
+		//Debug.Log("Done fading");
+		if (stoppableTrack == null || stoppableTrack.name == source.name) source.Stop();
+		source.volume = startVolume;
+    }
 
 }

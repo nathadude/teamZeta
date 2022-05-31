@@ -21,6 +21,7 @@ public class PlayerDamage : MonoBehaviour
             props["LevelSegment"] = collision.transform.parent.name;
             Mixpanel.Track("Death", props);
 
+            AudioManager.instance.Play("Death");
             GameOver.value = true;
             PlayerAC.SetTrigger("Death");
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;

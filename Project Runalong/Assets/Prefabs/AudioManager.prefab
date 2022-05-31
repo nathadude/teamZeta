@@ -63,6 +63,36 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: 613c1e1dae06e3343afe877a23515426, type: 3}
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Slide
+    clip: {fileID: 8300000, guid: b46b48d5eba19ad42ba73da15590c868, type: 3}
+    pitch: 1
+    volume: 0.474
+    loop: 0
+    source: {fileID: 0}
+  - name: Float
+    clip: {fileID: 8300000, guid: 1757b8f1309bb1c4684fd8e7676657be, type: 3}
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: 981457b17a2143b46a95fc248f8c315b, type: 3}
+    pitch: 0.62
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fall
+    clip: {fileID: 8300000, guid: a56c5ba8db01b284e9ba15d02eb0382c, type: 3}
+    pitch: 1
+    volume: 0.469
+    loop: 0
+    source: {fileID: 0}
 --- !u!114 &1841895488
 MonoBehaviour:
   m_ObjectHideFlags: 0

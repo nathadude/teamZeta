@@ -151,6 +151,7 @@ public class PlayerMove : MonoBehaviour
         // Allow if: Pressed jump, grounded
         if (jumpBufferCounter > 0f && (isGrounded || coyoteTimeRemaining > 0f))
         {
+            AudioManager.instance.Play("Jump");
             AC.SetBool("Jump", true);
             jump = true;
             justJumped = coyoteTime;
@@ -165,6 +166,7 @@ public class PlayerMove : MonoBehaviour
         if (((!HoldToggle.value && Input.GetButton("Jump")) || (HoldToggle.value && LclickHold)) && 
             coyoteTimeRemaining <= 0 && !jump && !fastfalling && !isGrounded && !gliding && rb.velocity.y <= 0)
         {
+            AudioManager.instance.PlayStoppableTrack("Float");
             startGlide = true;
             AC.SetBool("Gliding", true);
         } else if (gliding && ((!HoldToggle.value && !Input.GetButton("Jump")) || (HoldToggle.value && !LclickHold)))
@@ -178,6 +180,7 @@ public class PlayerMove : MonoBehaviour
         if (((!HoldToggle.value && Input.GetButton("Slide")) || (HoldToggle.value && RclickHold)) && 
             isGrounded && !jump && !sliding)
         {
+            AudioManager.instance.PlayStoppableTrack("Slide");
             AC.SetBool("Sliding", true);
             startSliding();
 
@@ -190,6 +193,7 @@ public class PlayerMove : MonoBehaviour
         // Allow if: Pressed slide, not grounded, not fastfalling already
         if (Input.GetButtonDown("Slide") && !isGrounded && !fastfalling)
         {
+            AudioManager.instance.Play("Fall");
             startFastFall = true;
         }
 
@@ -240,6 +244,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void stopSliding()
     {
+        AudioManager.instance.FadeOutStoppableTrack();
         AC.SetBool("Sliding", false);
         sliding = false;
         MainCollider.enabled = true;
@@ -249,6 +254,8 @@ public class PlayerMove : MonoBehaviour
 
     private void stopGliding()
     {
+        Debug.Log("Stop gliding");
+        AudioManager.instance.FadeOutStoppableTrack();
         AC.SetBool("Gliding", false);
         gliding = false;
         rb.gravityScale = defaultGravity;
