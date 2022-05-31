@@ -29,7 +29,7 @@ public class LevelLoader : MonoBehaviour
     private GameObject startPiece;
     private GameObject backgroundContainer;
 
-    void Awake()
+    void Start()
     {
         // Load levelPieces and background based on the LevelType
         switch(LevelID.value)
@@ -43,6 +43,7 @@ public class LevelLoader : MonoBehaviour
                 levelPieces = Resources.LoadAll<GameObject>("Placeholder");
                 startPiece = Resources.Load<GameObject>("Start/ground1");
                 backgroundContainer = Resources.Load<GameObject>("Backgrounds/ForestBG");
+                AudioManager.instance.PlayMusicIfNotPlaying("Forest");
                 break;
             default:
                 Debug.LogError("Error: No level pieces found for LevelType " + LevelID.value);

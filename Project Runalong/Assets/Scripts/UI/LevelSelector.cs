@@ -28,6 +28,7 @@ public class LevelSelector : MonoBehaviour
 
     public void LoadLevel()
     {
+        AudioManager.instance.StopMusic();
         SceneManager.LoadScene(levelToLoad);
     }
 
