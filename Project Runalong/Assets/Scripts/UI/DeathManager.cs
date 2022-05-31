@@ -57,6 +57,7 @@ public class DeathManager : MonoBehaviour
             mileageAtEnd = Mileage.value;
 
             TogglePanel(DeathPanel);
+            DeathPanel.GetComponent<Animator>().SetTrigger("FadeIn");
 
             CheckScore();
         }

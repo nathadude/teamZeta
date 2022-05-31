@@ -6,11 +6,12 @@ using UnityEngine;
 public class SpeedIncreaser : MonoBehaviour
 {
     public FloatSO MoveSpeed;
+    public BoolSO GameOver;
+
     public float initialSpeed;
     public float speedIncreasePerSecond;
     public float speedCap;
 
-    private static bool noIncrease; // If the speed increase is too crazy
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +21,12 @@ public class SpeedIncreaser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        if (GameOver.value)
         {
-            noIncrease = !noIncrease;
+            MoveSpeed.value = 0;
+            return;
         }
-
-        if (noIncrease || MoveSpeed.value > speedCap) return;
+        if (MoveSpeed.value > speedCap) return;
         MoveSpeed.value += Time.deltaTime * speedIncreasePerSecond;
     }
 }

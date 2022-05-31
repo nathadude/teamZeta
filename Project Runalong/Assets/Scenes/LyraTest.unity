@@ -834,6 +834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: {fileID: 11400000, guid: 9b7d270ddeeff7a4ea02c946666ce97b, type: 2}
+  GameOver: {fileID: 11400000, guid: 4adc6cd871847104ea0fd09a8a2a0c09, type: 2}
   initialSpeed: 13
   speedIncreasePerSecond: 0.1
   speedCap: 25
@@ -5116,6 +5117,7 @@ GameObject:
   - component: {fileID: 2143756377}
   - component: {fileID: 2143756376}
   - component: {fileID: 2143756379}
+  - component: {fileID: 2143756380}
   m_Layer: 5
   m_Name: GameOver Panel
   m_TagString: Untagged
@@ -5220,6 +5222,25 @@ MonoBehaviour:
   InitialsInput: {fileID: 1921842328}
   MileageText: {fileID: 1496779310}
   displayLeaderboard: {fileID: 20260969533235616}
+--- !u!95 &2143756380
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143756374}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce35f35ee3846434382152a73770b61c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!224 &20260969481446336
 RectTransform:
   m_ObjectHideFlags: 0

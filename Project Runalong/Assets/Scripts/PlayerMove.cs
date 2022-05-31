@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     // External forces
     public BoolSO Paused;
+    public BoolSO GameOver;
     public BoolSO HoldToggle; // If true, clicking will toggle the hold state
 
     // Player variables
@@ -66,7 +67,7 @@ public class PlayerMove : MonoBehaviour
     // TODO: Generalize controls if it needs to be used on mobile too
     void Update()
     {
-        if (Paused.value) return;
+        if (Paused.value || GameOver.value) return;
 
         // Raycast down to see if player is grounded, set variable
         CapsuleCollider2D activeCollider = sliding ? CrouchCollider : MainCollider;
