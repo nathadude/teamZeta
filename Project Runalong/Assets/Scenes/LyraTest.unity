@@ -4709,7 +4709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2940170783279232878, guid: 56b3fe3147588324a8d3b9b38935be21, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.46
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 2940170783279232878, guid: 56b3fe3147588324a8d3b9b38935be21, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4750,6 +4750,10 @@ PrefabInstance:
     - target: {fileID: 3348807298412177333, guid: 56b3fe3147588324a8d3b9b38935be21, type: 3}
       propertyPath: m_Name
       value: KillPlane
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095942013774913718, guid: 56b3fe3147588324a8d3b9b38935be21, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56b3fe3147588324a8d3b9b38935be21, type: 3}

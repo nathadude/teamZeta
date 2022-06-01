@@ -93,6 +93,12 @@ MonoBehaviour:
     volume: 0.469
     loop: 0
     source: {fileID: 0}
+  - name: Mountain
+    clip: {fileID: 8300000, guid: 21f6264cad35eaf44aa523ed0dbfc3c4, type: 3}
+    pitch: 1
+    volume: 0.826
+    loop: 1
+    source: {fileID: 0}
 --- !u!114 &1841895488
 MonoBehaviour:
   m_ObjectHideFlags: 0

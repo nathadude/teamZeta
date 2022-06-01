@@ -16,13 +16,17 @@ public class LevelSelector : MonoBehaviour
     public Button PlaceholderButton;
     public GameObject PlaceholderBG;
 
+    [Space]
+    public Button ForestButton;
+    public GameObject ForestBG;
+
     private Button[] buttons;
     private GameObject[] backgrounds;
 
     private void Awake()
     {
-        buttons = new Button[] {TestButton, PlaceholderButton};
-        backgrounds = new GameObject[] { TestBG, PlaceholderBG };
+        buttons = new Button[] {TestButton, PlaceholderButton, ForestButton};
+        backgrounds = new GameObject[] { TestBG, PlaceholderBG, ForestBG };
         StartButton.SetActive(false);
     }
 
@@ -40,6 +44,11 @@ public class LevelSelector : MonoBehaviour
     public void PrepPlaceholderLevel()
     {
         PrepLevel(0, "LyraTest", 1);
+    }
+
+    public void PrepForestLevel()
+    {
+        PrepLevel(1, "LyraTest", 2);
     }
 
     // Preps a level by setting active LevelID/Name, disabling the pressed button, and setting BG

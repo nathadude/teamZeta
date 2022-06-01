@@ -43,6 +43,12 @@ public class LevelLoader : MonoBehaviour
                 levelPieces = Resources.LoadAll<GameObject>("Placeholder");
                 startPiece = Resources.Load<GameObject>("Start/ground1");
                 backgroundContainer = Resources.Load<GameObject>("Backgrounds/ForestBG");
+                AudioManager.instance.PlayMusicIfNotPlaying("Mountain");
+                break;
+            case 1: // Forest
+                levelPieces = Resources.LoadAll<GameObject>("Forest");
+                startPiece = Resources.Load<GameObject>("Start/ground1");
+                backgroundContainer = Resources.Load<GameObject>("Backgrounds/ForestBG");
                 AudioManager.instance.PlayMusicIfNotPlaying("Forest");
                 break;
             default:

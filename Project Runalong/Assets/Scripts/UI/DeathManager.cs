@@ -74,9 +74,9 @@ public class DeathManager : MonoBehaviour
                 VerifyingText.enabled = false;
                 // Check the last one on the list, if yours is better then time to input a score
                 LootLockerLeaderboardMember[] scores = response.items;
-                Debug.Log("Lowest score: " + scores[scores.Length - 1].score);
-                Debug.Log("User score: " + mileageAtEnd * 100);
-                if (scores.Length < 10 || mileageAtEnd * 100 > scores[scores.Length - 1].score)
+                //Debug.Log("Lowest score: " + scores[scores.Length - 1].score);
+                //Debug.Log("User score: " + mileageAtEnd * 100);
+                if (scores.Length < 10  || scores.Length == 0 || mileageAtEnd * 100 > scores[scores.Length - 1].score)
                 {
                     Debug.Log("Score was better!");
                     TogglePanel(LeaderboardPanel);
