@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public CanvasGroup ControlPanel;
     public CanvasGroup LevelSelectPanel;
     public CanvasGroup LeaderboardPanel;
+    public CanvasGroup ShopPanel;
 
     private CanvasGroup[] AllGroups;
 
@@ -18,7 +19,8 @@ public class MainMenu : MonoBehaviour
             MainPanel,
             ControlPanel,
             LevelSelectPanel,
-            LeaderboardPanel
+            LeaderboardPanel,
+            ShopPanel
         };
 
         for (int i = 1; i < AllGroups.Length; i++)
@@ -69,6 +71,16 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Quitting the game");
+    }
+
+    public void OpenShop()
+    {
+        TogglePanel(MainPanel, ShopPanel);
+    }
+
+    public void CloseShopPanel()
+    {
+        TogglePanel(ShopPanel, MainPanel);
     }
 
     private void TogglePanel(CanvasGroup fadeOut, CanvasGroup fadeIn)

@@ -13,6 +13,7 @@ public class PlayerDamage : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
+            PlayerPrefsManager.IncreaseScore();
             if (invicible) return;
 
             // Mixpanel logging
