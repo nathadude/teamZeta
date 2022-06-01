@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,11 @@ public class PlayerPrefsManager : MonoBehaviour
     // Score value initialized
     public const string Score = "Score";
     public static int score = 0;
-    public GameObject mileage;
 
     // Start is called before the first frame update
     void Start()
     {
+        //mileageTracker = GetComponent<MileageTracker>();
         score = PlayerPrefs.GetInt("Score");
         //mileage = reference to mileage tracker and trip mileage final score
     }
@@ -30,6 +31,15 @@ public class PlayerPrefsManager : MonoBehaviour
 
     public static void IncreaseScore()
     {
-        score += 10; //place holder, we want to eventually add final score of the round, at death
+        //milesOnDeath = mileageTracker.TripMileage.value;
+        score += Convert.ToInt32(MileageTracker.tripMileage);
+        UpdateScore();
+    }
+
+    public static void IncreaseScoreButton()
+    {
+        //milesOnDeath = mileageTracker.TripMileage.value;
+        score += 10;
+        UpdateScore();
     }
 }

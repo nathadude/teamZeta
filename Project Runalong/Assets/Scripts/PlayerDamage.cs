@@ -3,6 +3,7 @@ using UnityEngine;
 using mixpanel;
 using System.Collections;
 
+
 public class PlayerDamage : MonoBehaviour
 {
     public bool invicible;
@@ -28,4 +29,4 @@ public class PlayerDamage : MonoBehaviour
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         }
     }
-}
+} 

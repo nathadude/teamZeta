@@ -8,6 +8,7 @@ public class MileageTracker : MonoBehaviour
     public FloatSO TripMileage;
     public FloatSO HighScore;
     public bool ResetScore;
+    public static float tripMileage;
 
     private float initialPos;
     private Transform playerRef;
@@ -28,8 +29,14 @@ public class MileageTracker : MonoBehaviour
         {
             TripMileage.value = (playerRef.position.x - initialPos) / 100; // divided by 100 to approximate miles
             if (HighScore.value < TripMileage.value) HighScore.value = TripMileage.value;
+            tripMileage = TripMileage.value;
         }
     }
+
+    //public static float GetTrip()
+    //{
+    //    return TripMileage.value;
+    //}
 
     private void OnApplicationQuit()
     {
