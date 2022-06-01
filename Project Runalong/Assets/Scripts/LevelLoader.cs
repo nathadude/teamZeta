@@ -42,7 +42,7 @@ public class LevelLoader : MonoBehaviour
             case 0: // Placeholder
                 levelPieces = Resources.LoadAll<GameObject>("Placeholder");
                 startPiece = Resources.Load<GameObject>("Start/ground1");
-                backgroundContainer = Resources.Load<GameObject>("Backgrounds/ForestBG");
+                backgroundContainer = Resources.Load<GameObject>("Backgrounds/OceanBG");
                 AudioManager.instance.PlayMusicIfNotPlaying("Mountain");
                 break;
             case 1: // Forest
