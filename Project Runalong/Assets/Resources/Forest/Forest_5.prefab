@@ -155,7 +155,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4772417986902291640, guid: 0039eceed6a10d54a949635cc558cbb3, type: 3}
       propertyPath: m_Name
-      value: RockPond 1
+      value: Cliffs
       objectReference: {fileID: 0}
     - target: {fileID: 6569621339882746245, guid: 0039eceed6a10d54a949635cc558cbb3, type: 3}
       propertyPath: m_RootOrder

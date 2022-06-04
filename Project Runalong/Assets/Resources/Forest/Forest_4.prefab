@@ -168,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5742135091141139489, guid: abad975064c18da4ea68f24558ebaa21, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.68
+      value: 6.48
       objectReference: {fileID: 0}
     - target: {fileID: 5742135091141139489, guid: abad975064c18da4ea68f24558ebaa21, type: 3}
       propertyPath: m_LocalPosition.z
@@ -218,7 +218,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4772417986902291640, guid: 0039eceed6a10d54a949635cc558cbb3, type: 3}
       propertyPath: m_Name
-      value: RockPond 1
+      value: Cliffs
       objectReference: {fileID: 0}
     - target: {fileID: 6569621339882746245, guid: 0039eceed6a10d54a949635cc558cbb3, type: 3}
       propertyPath: m_RootOrder
@@ -238,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6569621339882746245, guid: 0039eceed6a10d54a949635cc558cbb3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 6569621339882746245, guid: 0039eceed6a10d54a949635cc558cbb3, type: 3}
       propertyPath: m_LocalPosition.z

@@ -32,7 +32,10 @@ public class MainMenu : MonoBehaviour
         MainPanel.alpha = 1;
         MainPanel.blocksRaycasts = true;
         MainPanel.interactable = true;
+    }
 
+    private void Start()
+    {
         AudioManager.instance.PlayMusic("Title");
     }
 
