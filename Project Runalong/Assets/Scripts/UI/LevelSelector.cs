@@ -2,10 +2,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class LevelSelector : MonoBehaviour
 {
     public IntSO levelId;
+    public Animator CircleAC;
     private string levelToLoad;
 
     public GameObject StartButton;
@@ -32,8 +34,19 @@ public class LevelSelector : MonoBehaviour
 
     public void LoadLevel()
     {
-        AudioManager.instance.StopMusic();
         SceneManager.LoadScene(levelToLoad);
+    }
+
+    public void LoadLevelAfterFade()
+    {
+        CircleAC.SetTrigger("FadeOut");
+        StartCoroutine(loadSceneAfterDelay(0.5f));
+    }
+
+    IEnumerator loadSceneAfterDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        LoadLevel();
     }
 
     public void PrepTestLevel()

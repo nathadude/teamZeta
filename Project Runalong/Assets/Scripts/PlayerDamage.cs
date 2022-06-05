@@ -24,6 +24,7 @@ public class PlayerDamage : MonoBehaviour
             Mixpanel.Track("Death", props);
 
             AudioManager.instance.Play("Death");
+            AudioManager.instance.CrossfadeMusic("EndScreen", 0.5f);
             GameOver.value = true;
             PlayerAC.SetTrigger("Death");
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;

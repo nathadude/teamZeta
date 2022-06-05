@@ -254,7 +254,7 @@ public class PlayerMove : MonoBehaviour
 
     private void stopGliding()
     {
-        Debug.Log("Stop gliding");
+        //Debug.Log("Stop gliding");
         AudioManager.instance.FadeOutStoppableTrack();
         AC.SetBool("Gliding", false);
         gliding = false;

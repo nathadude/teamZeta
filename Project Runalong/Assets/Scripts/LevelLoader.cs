@@ -38,18 +38,25 @@ public class LevelLoader : MonoBehaviour
                 levelPieces = Resources.LoadAll<GameObject>("Test");
                 startPiece = Resources.Load<GameObject>("Start/ground1");
                 backgroundContainer = Resources.Load<GameObject>("Backgrounds/MountainBG");
+                AudioManager.instance.CrossfadeMusic("Mountain", 0.5f);
                 break;
             case 0: // Placeholder
                 levelPieces = Resources.LoadAll<GameObject>("Placeholder");
                 startPiece = Resources.Load<GameObject>("Start/ground1");
                 backgroundContainer = Resources.Load<GameObject>("Backgrounds/OceanBG");
-                AudioManager.instance.PlayMusicIfNotPlaying("Mountain");
+                AudioManager.instance.CrossfadeMusic("Ocean", 0.5f);
                 break;
             case 1: // Forest
                 levelPieces = Resources.LoadAll<GameObject>("Forest");
                 startPiece = Resources.Load<GameObject>("Start/ground1");
                 backgroundContainer = Resources.Load<GameObject>("Backgrounds/ForestBG");
-                AudioManager.instance.PlayMusicIfNotPlaying("Forest");
+                AudioManager.instance.CrossfadeMusic("Forest", 0.5f);
+                break;
+            case 2: // Mountain
+                levelPieces = Resources.LoadAll<GameObject>("Mountain");
+                startPiece = Resources.Load<GameObject>("Start/MountainGround");
+                backgroundContainer = Resources.Load<GameObject>("Backgrounds/MountainBG");
+                AudioManager.instance.CrossfadeMusic("Mountain", 0.5f);
                 break;
             default:
                 Debug.LogError("Error: No level pieces found for LevelType " + LevelID.value);

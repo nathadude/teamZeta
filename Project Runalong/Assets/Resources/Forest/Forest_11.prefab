@@ -197,48 +197,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bug Swarm
       objectReference: {fileID: 0}
-    - target: {fileID: 8784395901759265721, guid: 3a817a0deb0e56c418ef8c3e3fe36bf9, type: 3}
-      propertyPath: obstacleSpeed
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a817a0deb0e56c418ef8c3e3fe36bf9, type: 3}
---- !u!1 &5578869558995397653 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 764748324728695530, guid: 3a817a0deb0e56c418ef8c3e3fe36bf9, type: 3}
-  m_PrefabInstance: {fileID: 5183870507584210687}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4690306538363321104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 497540215611080175, guid: 3a817a0deb0e56c418ef8c3e3fe36bf9, type: 3}
   m_PrefabInstance: {fileID: 5183870507584210687}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &5362033713110056745
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5578869558995397653}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.027031183, y: -0.14416635}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 5.12}
-    newSize: {x: 1.28, y: 2.56}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.9292717, y: 4.579376}
-  m_EdgeRadius: 0
 --- !u!1001 &5557739547751696902
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,12 +2,14 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 using LootLocker.Requests;
+using System.Collections;
 
 public class DeathManager : MonoBehaviour
 {
     public BoolSO GameOver;
     public FloatSO Mileage;
     public IntSO LevelID;
+    public Animator CircleAC;
 
     [Space]
     public CanvasGroup DeathPanel; // Main parent panel
@@ -115,12 +117,19 @@ public class DeathManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(loadSceneAfterDelay(SceneManager.GetActiveScene().buildIndex, 0.5f));
     }
     
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine(loadSceneAfterDelay(0, 0.5f));
+    }
+
+    IEnumerator loadSceneAfterDelay(int buildIndex, float time)
+    {
+        CircleAC.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene(buildIndex);
     }
 
     private void TogglePanel(CanvasGroup g)

@@ -81,6 +81,80 @@ public class AudioManager : MonoBehaviour
 	}
 
 	/// <summary>
+	/// Fades the currently playing music out
+	/// </summary>
+	public void FadeOutMusic(float fadeTime)
+	{
+		if (activeSong == null)
+        {
+			Debug.LogWarning("Tried to fade out but no music was playing");
+			return;
+        }
+		StartCoroutine(MusicFadeOutHelper(fadeTime));
+	}
+
+	IEnumerator MusicFadeOutHelper(float fadeTime)
+	{
+		float startVolume = activeSong.volume;
+		while (activeSong.volume > 0)
+		{
+			activeSong.volume -= startVolume * Time.deltaTime / fadeTime;
+			yield return null;
+		}
+		//Debug.Log("Done fading");
+		activeSong.Stop();
+		activeSong.volume = startVolume;
+		activeSong = null;
+	}
+
+	/// <summary>
+	/// Fades the currently playing music out
+	/// </summary>
+	public void FadeInMusic(string song, float fadeTime)
+	{
+		if (activeSong != null)
+		{
+			Debug.LogWarning("Song was already playing: Stopping it before fadein");
+			StopMusic();
+			StopAllCoroutines();
+		}
+		PlayMusic(song);
+		StartCoroutine(MusicFadeInHelper(fadeTime));
+	}
+
+	IEnumerator MusicFadeInHelper(float fadeTime)
+	{
+		float endVolume = activeSong.volume;
+		activeSong.volume = 0;
+		while (activeSong.volume < endVolume)
+		{
+			activeSong.volume += endVolume * Time.deltaTime / fadeTime;
+			yield return null;
+		}
+		//Debug.Log("Done fading");
+		activeSong.volume = endVolume;
+	}
+
+	/// <summary>
+	/// Fades the currently playing music out, before fading in the given song
+	/// </summary>
+	public void CrossfadeMusic(string song, float fadeTime)
+	{
+		StartCoroutine(CrossfadeHelper(song, fadeTime));
+	}
+
+	IEnumerator CrossfadeHelper(string song, float fadeTime)
+    {
+		if (activeSong != null)
+        {
+			FadeOutMusic(fadeTime);
+			yield return new WaitForSeconds(fadeTime + 0.1f);
+		}
+		
+		FadeInMusic(song, fadeTime);
+    }
+
+	/// <summary>
 	/// Plays a sound. This sound cannot be stopped - ideal for short SFX
 	/// </summary>
 	public void Play(string sound)

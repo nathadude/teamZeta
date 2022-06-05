@@ -52,9 +52,9 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: Forest
-    clip: {fileID: 8300000, guid: 5b06589401e703f419b43e0599188fbd, type: 3}
+    clip: {fileID: 8300000, guid: 1af4c5ed505a0a24f89cb03978b6b449, type: 3}
     pitch: 1
-    volume: 1
+    volume: 0.6
     loop: 1
     source: {fileID: 0}
   - name: ButtonClick
@@ -97,6 +97,18 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 21f6264cad35eaf44aa523ed0dbfc3c4, type: 3}
     pitch: 1
     volume: 0.6
+    loop: 1
+    source: {fileID: 0}
+  - name: Ocean
+    clip: {fileID: 8300000, guid: 00c0ad79d52d8e843872243779730b0e, type: 3}
+    pitch: 1
+    volume: 0.5
+    loop: 1
+    source: {fileID: 0}
+  - name: EndScreen
+    clip: {fileID: 8300000, guid: 5b06589401e703f419b43e0599188fbd, type: 3}
+    pitch: 1
+    volume: 1
     loop: 1
     source: {fileID: 0}
 --- !u!114 &1841895488

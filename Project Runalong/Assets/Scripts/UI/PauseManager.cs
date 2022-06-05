@@ -8,6 +8,8 @@ public class PauseManager : MonoBehaviour
     public BoolSO Paused;
     public BoolSO GameOver;
     public CanvasGroup PausePanel;
+    public Animator CircleAC;
+
     private void Awake()
     {
         Paused.value = false;
@@ -44,7 +46,14 @@ public class PauseManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine(loadSceneAfterDelay(0, 0.5f));
         Time.timeScale = 1;
+    }
+
+    IEnumerator loadSceneAfterDelay(int buildIndex, float time)
+    {
+        CircleAC.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene(buildIndex);
     }
 }
