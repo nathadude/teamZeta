@@ -9,7 +9,7 @@ public class DebugController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        debug.value = false;
     }
 
     // Update is called once per frame

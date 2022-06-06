@@ -10,7 +10,7 @@ public class DisplayLeaderboard : MonoBehaviour
     public TextMeshProUGUI LevelTitle;
     public Button NextButton;
     public Button PrevButton;
-    private int currentLeaderboard = -1; // For main menu display
+    private int currentLeaderboard = 1; // For main menu display
 
     private void Start()
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 // A Data class which contains a map from level ID to name, and level ID to leaderboard ID
 public static class LevelMappings
 {
-    public static List<int> Levels = new List<int>() { -1, 0, 1, 2, 3 };
+    public static List<int> Levels = new List<int>() { 1, 2, 3 };
 
     public static Dictionary<int, string> IdToName = new Dictionary<int, string>()
     {
