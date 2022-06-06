@@ -27,6 +27,11 @@ public class PlayerDamage : MonoBehaviour
             AudioManager.instance.CrossfadeMusic("EndScreen", 0.5f);
             GameOver.value = true;
             PlayerAC.SetTrigger("Death");
+
+            foreach(CapsuleCollider2D coll in GetComponents<CapsuleCollider2D>())
+            {
+                coll.enabled = false;
+            }
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         }
     }

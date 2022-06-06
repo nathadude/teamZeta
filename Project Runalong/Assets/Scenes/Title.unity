@@ -2528,7 +2528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Project Runalong
+  m_text: Wait For Me
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ca24efc2e02d6c9418cfcad984a55e22, type: 2}
   m_sharedMaterial: {fileID: -8722164782513935363, guid: ca24efc2e02d6c9418cfcad984a55e22, type: 2}
@@ -3916,46 +3916,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[11].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 69df7424e9a084549b9ecebd49aafb04, type: 3}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[11].loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[11].name
-      value: MenuFail
-      objectReference: {fileID: 0}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[12].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: b3d5b63bb0189b943acfaab9f91cec1a, type: 3}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[12].name
-      value: MenuSuccess
-      objectReference: {fileID: 0}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[11].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[12].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[11].volume
-      value: 0.366
-      objectReference: {fileID: 0}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[12].volume
-      value: 0.366
-      objectReference: {fileID: 0}
     - target: {fileID: 172584384566823699, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -6969,7 +6929,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655886953}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -7199,7 +7159,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 85f2cd83662fdb94abae251891df2d00, type: 3}
-  m_Color: {r: 0.32489365, g: 0.44313726, b: 0.28627452, a: 1}
+  m_Color: {r: 0.105882354, g: 0.007843138, b: 0.26666668, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7295,7 +7255,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771176543}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
