@@ -22,6 +22,12 @@ public class PlayerMove : MonoBehaviour
     public CapsuleCollider2D MainCollider;
     public CapsuleCollider2D CrouchCollider;
     public Animator AC;
+    
+    // Particles
+    [Space]
+    public ParticleSystem JumpPS;
+    public ParticleSystem SlidePS;
+    public ParticleSystem GlidePS;
 
     // Tracking player state
     private bool isGrounded;
@@ -107,6 +113,7 @@ public class PlayerMove : MonoBehaviour
         // Logic when player just landed
         if (!wasGrounded && isGrounded)
         {
+            JumpPS.Play();
             alreadyGlided = false;
             AC.SetBool("Jump", false);
             if (gliding)
@@ -153,6 +160,7 @@ public class PlayerMove : MonoBehaviour
         {
             AudioManager.instance.Play("Jump");
             AC.SetBool("Jump", true);
+
             jump = true;
             justJumped = coyoteTime;
             stopSliding();
@@ -169,6 +177,7 @@ public class PlayerMove : MonoBehaviour
             AudioManager.instance.PlayStoppableTrack("Float");
             startGlide = true;
             AC.SetBool("Gliding", true);
+            GlidePS.Play();
         } else if (gliding && ((!HoldToggle.value && !Input.GetButton("Jump")) || (HoldToggle.value && !LclickHold)))
         {
             stopGliding();
@@ -236,6 +245,7 @@ public class PlayerMove : MonoBehaviour
 
     private void startSliding()
     {
+        SlidePS.Play();
         AC.SetBool("Sliding", true);
         sliding = true;
         MainCollider.enabled = false;
@@ -244,6 +254,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void stopSliding()
     {
+        SlidePS.Stop();
         AudioManager.instance.FadeOutStoppableTrack();
         AC.SetBool("Sliding", false);
         sliding = false;
@@ -255,6 +266,7 @@ public class PlayerMove : MonoBehaviour
     private void stopGliding()
     {
         //Debug.Log("Stop gliding");
+        GlidePS.Stop();
         AudioManager.instance.FadeOutStoppableTrack();
         AC.SetBool("Gliding", false);
         gliding = false;

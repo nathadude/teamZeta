@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public CanvasGroup LevelSelectPanel;
     public CanvasGroup LeaderboardPanel;
     public CanvasGroup ShopPanel;
+    public CanvasGroup CreditsPanel;
 
     private CanvasGroup[] AllGroups;
 
@@ -20,7 +21,8 @@ public class MainMenu : MonoBehaviour
             ControlPanel,
             LevelSelectPanel,
             LeaderboardPanel,
-            ShopPanel
+            ShopPanel,
+            CreditsPanel
         };
 
         for (int i = 1; i < AllGroups.Length; i++)
@@ -68,6 +70,16 @@ public class MainMenu : MonoBehaviour
     public void CloseLeaderboard()
     {
         TogglePanel(LeaderboardPanel, MainPanel);
+    }
+
+    public void OpenCredits()
+    {
+        TogglePanel(MainPanel, CreditsPanel);
+    }
+
+    public void CloseCredits()
+    {
+        TogglePanel(CreditsPanel, MainPanel);
     }
 
     public void QuitGame()
