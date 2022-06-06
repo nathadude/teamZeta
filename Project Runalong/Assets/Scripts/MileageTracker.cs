@@ -8,7 +8,7 @@ public class MileageTracker : MonoBehaviour
     public FloatSO TripMileage;
     public FloatSO HighScore;
     public bool ResetScore;
-    public static float tripMileage;
+    public static float tripMileage; //float that updates and can be called, added and stored for the shop
 
     private float initialPos;
     private Transform playerRef;
@@ -31,15 +31,5 @@ public class MileageTracker : MonoBehaviour
             if (HighScore.value < TripMileage.value) HighScore.value = TripMileage.value;
             tripMileage = TripMileage.value;
         }
-    }
-
-    //public static float GetTrip()
-    //{
-    //    return TripMileage.value;
-    //}
-
-    private void OnApplicationQuit()
-    {
-        // TODO: Save highscore to a file or something
     }
 }

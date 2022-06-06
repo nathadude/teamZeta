@@ -9,12 +9,17 @@ public class PlayerPrefsManager : MonoBehaviour
     public const string Score = "Score";
     public static int score = 0;
 
+    public const string MountUnlocked = "MountUnlocked";
+    public const string OceanUnlocked = "OceanUnlocked";
+    public static int OUnlock = 0;
+    public static int MUnlock = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        //mileageTracker = GetComponent<MileageTracker>();
         score = PlayerPrefs.GetInt("Score");
-        //mileage = reference to mileage tracker and trip mileage final score
+        MUnlock = PlayerPrefs.GetInt("MountUnlocked");
+        OUnlock = PlayerPrefs.GetInt("OceanUnlocked");
     }
 
     // Update is called once per frame
@@ -27,6 +32,14 @@ public class PlayerPrefsManager : MonoBehaviour
         PlayerPrefs.SetInt("Score", score);
         score = PlayerPrefs.GetInt("Score");
         PlayerPrefs.Save();
+        Debug.Log(score);
+    }
+
+    public static void BuyUpdateScore()
+    {
+        score = PlayerPrefs.GetInt("Score");
+        PlayerPrefs.Save();
+        Debug.Log(score);
     }
 
     public static void IncreaseScore()
@@ -36,10 +49,29 @@ public class PlayerPrefsManager : MonoBehaviour
         UpdateScore();
     }
 
-    public static void IncreaseScoreButton()
+    public static void ClearPrefs()
     {
-        //milesOnDeath = mileageTracker.TripMileage.value;
-        score += 10;
+        PlayerPrefs.DeleteAll();
+    }
+
+    public static void GiveMiles()
+    {
+        score += 500;
         UpdateScore();
     }
+
+    public static void ResetMiles()
+    {
+        score = 0;
+        UpdateScore();
+    }
+
+    //public static void TryBuy()
+    //{
+    //    //try to subtract cost from miles
+
+    //    //catch errors
+
+    //    //UpdateScore();
+    //}
 }
