@@ -7,6 +7,7 @@ using System.Collections;
 public class LevelSelector : MonoBehaviour
 {
     public IntSO levelId;
+    public BoolSO debug;
     public Animator CircleAC;
     private string levelToLoad;
 
@@ -45,26 +46,35 @@ public class LevelSelector : MonoBehaviour
     {
         buttons = new Button[] {TestButton, PlaceholderButton, ForestButton, MountainButton, OceanButton};
         backgrounds = new GameObject[] { TestBG, PlaceholderBG, ForestBG, MountainBG, OceanBG};
-        StartButton.SetActive(false);
-        BuyMountain.SetActive(false);
-        BuyOcean.SetActive(false);
         mountainUnlocked = PlayerPrefs.GetInt("MountUnlocked");
         oceanUnlocked = PlayerPrefs.GetInt("OceanUnlocked");
     }
 
+    private void Start()
+    {
+        Debug.Log(StartButton);
+        StartButton.SetActive(false);
+        BuyMountain.SetActive(false);
+        BuyOcean.SetActive(false);
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        if (debug.value)
         {
-            PlayerPrefsManager.GiveMiles();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            PlayerPrefsManager.ResetMiles();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            PlayerPrefsManager.ClearPrefs();
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                PlayerPrefsManager.GiveMiles();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                PlayerPrefsManager.ResetMiles();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                PlayerPrefsManager.ClearPrefs();
+                Debug.Log("Prefs cleared");
+            }
         }
     }
 
@@ -126,12 +136,13 @@ public class LevelSelector : MonoBehaviour
             PlayerPrefs.Save();
             mountainUnlocked = 1;
 
+            AudioManager.instance.Play("MenuSuccess");
             PrepMountainLevel();
         }
         //If not then dont subtract and play error sound
         else
         {
-            //AudioManager.instance.Play("Failure");
+            AudioManager.instance.Play("MenuFail");
         }
     }
 
@@ -151,12 +162,13 @@ public class LevelSelector : MonoBehaviour
             PlayerPrefs.Save();
             oceanUnlocked = 1;
 
+            AudioManager.instance.Play("MenuSuccess");
             PrepOceanLevel();
         }
         //If not then dont subtract and re-run prepLevel
         else
         {
-            //AudioManager.instance.Play("Failure");
+            AudioManager.instance.Play("MenuFail");
         }
     }
 
