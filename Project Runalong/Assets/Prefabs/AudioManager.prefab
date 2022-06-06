@@ -54,7 +54,7 @@ MonoBehaviour:
   - name: Forest
     clip: {fileID: 8300000, guid: 1af4c5ed505a0a24f89cb03978b6b449, type: 3}
     pitch: 1
-    volume: 0.6
+    volume: 0.5
     loop: 1
     source: {fileID: 0}
   - name: ButtonClick
@@ -114,7 +114,7 @@ MonoBehaviour:
   - name: CarWarning
     clip: {fileID: 8300000, guid: f88f76d237171854396db9b078b7f50f, type: 3}
     pitch: 1
-    volume: 0.164
+    volume: 0.117
     loop: 0
     source: {fileID: 0}
   - name: MenuFail
@@ -127,6 +127,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b3d5b63bb0189b943acfaab9f91cec1a, type: 3}
     pitch: 1
     volume: 0.366
+    loop: 0
+    source: {fileID: 0}
+  - name: CarDrive
+    clip: {fileID: 8300000, guid: 022026fb101a52843b1452691c31bd9a, type: 3}
+    pitch: 1
+    volume: 0.718
     loop: 0
     source: {fileID: 0}
 --- !u!114 &1841895488

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class LevelSelector : MonoBehaviour
 {
@@ -15,12 +16,12 @@ public class LevelSelector : MonoBehaviour
     public GameObject BuyMountain;
     public GameObject BuyOcean;
 
-    [Space]
+/*    [Space]
     public Button TestButton;
     public GameObject TestBG;
     [Space]
     public Button PlaceholderButton;
-    public GameObject PlaceholderBG;
+    public GameObject PlaceholderBG;*/
 
     [Space]
     public Button ForestButton;
@@ -44,18 +45,35 @@ public class LevelSelector : MonoBehaviour
 
     private void Awake()
     {
-        buttons = new Button[] {TestButton, PlaceholderButton, ForestButton, MountainButton, OceanButton};
-        backgrounds = new GameObject[] { TestBG, PlaceholderBG, ForestBG, MountainBG, OceanBG};
+        buttons = new Button[] {ForestButton, MountainButton, OceanButton};
+        backgrounds = new GameObject[] {ForestBG, MountainBG, OceanBG};
         mountainUnlocked = PlayerPrefs.GetInt("MountUnlocked");
         oceanUnlocked = PlayerPrefs.GetInt("OceanUnlocked");
     }
 
     private void Start()
     {
-        Debug.Log(StartButton);
         StartButton.SetActive(false);
         BuyMountain.SetActive(false);
         BuyOcean.SetActive(false);
+
+        if (mountainUnlocked == 1)
+        {
+            MountainButton.GetComponentInChildren<TextMeshProUGUI>().text = "MOUNTAIN";
+        } else
+        {
+            MountainButton.GetComponentInChildren<TextMeshProUGUI>().text = "LOCKED [100]";
+        }
+
+        if (oceanUnlocked == 1)
+        {
+            OceanButton.GetComponentInChildren<TextMeshProUGUI>().text = "OCEAN";
+        }
+        else
+        {
+            OceanButton.GetComponentInChildren<TextMeshProUGUI>().text = "LOCKED [250]";
+        }
+
     }
 
     private void Update()
@@ -107,17 +125,17 @@ public class LevelSelector : MonoBehaviour
 
     public void PrepForestLevel()
     {
-        PrepLevel(1, "LyraTest", 2);
+        PrepLevel(1, "LyraTest", 0);
     }
 
     public void PrepMountainLevel()
     {
-        PrepLevel(2, "LyraTest", 3);
+        PrepLevel(2, "LyraTest", 1);
     }
 
     public void PrepOceanLevel()
     {
-        PrepLevel(3, "LyraTest", 4);
+        PrepLevel(3, "LyraTest", 2);
     }
 
     public void TryBuyMountain()
@@ -137,6 +155,7 @@ public class LevelSelector : MonoBehaviour
             mountainUnlocked = 1;
 
             AudioManager.instance.Play("MenuSuccess");
+            MountainButton.GetComponentInChildren<TextMeshProUGUI>().text = "MOUNTAIN";
             PrepMountainLevel();
         }
         //If not then dont subtract and play error sound
@@ -163,6 +182,7 @@ public class LevelSelector : MonoBehaviour
             oceanUnlocked = 1;
 
             AudioManager.instance.Play("MenuSuccess");
+            OceanButton.GetComponentInChildren<TextMeshProUGUI>().text = "OCEAN";
             PrepOceanLevel();
         }
         //If not then dont subtract and re-run prepLevel

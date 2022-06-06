@@ -849,9 +849,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: {fileID: 11400000, guid: 9b7d270ddeeff7a4ea02c946666ce97b, type: 2}
   GameOver: {fileID: 11400000, guid: 4adc6cd871847104ea0fd09a8a2a0c09, type: 2}
+  LevelID: {fileID: 11400000, guid: 56bd46842ef2b9c47a1336817b73f00d, type: 2}
   initialSpeed: 13
   speedIncreasePerSecond: 0.1
   speedCap: 25
+  initialSpeedHard: 18
+  speedCapHard: 30
 --- !u!1001 &193044531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7162,30 +7165,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[14].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 022026fb101a52843b1452691c31bd9a, type: 3}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[14].name
-      value: CarDrive
-      objectReference: {fileID: 0}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[14].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[1].volume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 172584384566823698, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
-      propertyPath: sounds.Array.data[14].volume
-      value: 0.765
-      objectReference: {fileID: 0}
     - target: {fileID: 172584384566823699, guid: e8a214b5f5658d64d820f838b89ad6bb, type: 3}
       propertyPath: m_Name
       value: AudioManager

@@ -38,7 +38,7 @@ public class LevelLoader : MonoBehaviour
                 levelPieces = Resources.LoadAll<GameObject>("Test");
                 startPiece = Resources.Load<GameObject>("Start/ground1");
                 backgroundContainer = Resources.Load<GameObject>("Backgrounds/MountainBG");
-                AudioManager.instance.CrossfadeMusic("Mountain", 0.5f);
+                AudioManager.instance.CrossfadeMusic("Title", 0.5f);
                 break;
             case 0: // Placeholder
                 levelPieces = Resources.LoadAll<GameObject>("Placeholder");
@@ -57,6 +57,12 @@ public class LevelLoader : MonoBehaviour
                 startPiece = Resources.Load<GameObject>("Start/MountainGround");
                 backgroundContainer = Resources.Load<GameObject>("Backgrounds/MountainBG");
                 AudioManager.instance.CrossfadeMusic("Mountain", 0.5f);
+                break;
+            case 3: // Ocean
+                levelPieces = Resources.LoadAll<GameObject>("Ocean");
+                startPiece = Resources.Load<GameObject>("Start/OceanGround");
+                backgroundContainer = Resources.Load<GameObject>("Backgrounds/OceanBG");
+                AudioManager.instance.CrossfadeMusic("Ocean", 0.5f);
                 break;
             default:
                 Debug.LogError("Error: No level pieces found for LevelType " + LevelID.value);
@@ -78,6 +84,9 @@ public class LevelLoader : MonoBehaviour
         {
             GameObject tutorialPiece = Resources.Load<GameObject>("Tutorial/T1");
             spawnPiece(tutorialPiece);
+        } else if (LevelID.value == 3 || LevelID.value == -1)
+        {
+            spawnPiece(startPiece);
         } else
         {
             spawnNextPiece();

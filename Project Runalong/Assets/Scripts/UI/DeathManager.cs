@@ -8,6 +8,7 @@ public class DeathManager : MonoBehaviour
 {
     public BoolSO GameOver;
     public FloatSO Mileage;
+    public FloatSO HiScore;
     public IntSO LevelID;
     public Animator CircleAC;
 
@@ -123,6 +124,7 @@ public class DeathManager : MonoBehaviour
     public void LoadMainMenu()
     {
         StartCoroutine(loadSceneAfterDelay(0, 0.5f));
+        HiScore.value = 0;
     }
 
     IEnumerator loadSceneAfterDelay(int buildIndex, float time)
