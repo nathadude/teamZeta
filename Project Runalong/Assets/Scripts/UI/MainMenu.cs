@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.CrossfadeMusic("Title", 0.5f);
+        AudioManager.instance.CrossfadeMusic("Title", 0.75f);
     }
 
 

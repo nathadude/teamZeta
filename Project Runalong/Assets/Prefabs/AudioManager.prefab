@@ -135,6 +135,18 @@ MonoBehaviour:
     volume: 0.718
     loop: 0
     source: {fileID: 0}
+  - name: Birdsong
+    clip: {fileID: 8300000, guid: 46106f3638b609646bffcf672492b9d2, type: 3}
+    pitch: 1
+    volume: 0.693
+    loop: 1
+    source: {fileID: 0}
+  - name: CarAmbient
+    clip: {fileID: 8300000, guid: 600c99713fa896e4597eb058658be79d, type: 3}
+    pitch: 1
+    volume: 0.441
+    loop: 1
+    source: {fileID: 0}
 --- !u!114 &1841895488
 MonoBehaviour:
   m_ObjectHideFlags: 0

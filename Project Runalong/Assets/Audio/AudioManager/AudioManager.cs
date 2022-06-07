@@ -216,10 +216,10 @@ public class AudioManager : MonoBehaviour
 		stoppableTrack = null;
 	}
 
-	public void FadeOutStoppableTrack()
+	public void FadeOutStoppableTrack(float fadeTime)
     {
 		if (stoppableTrack == null) return;
-		StartCoroutine(FadeOut(stoppableTrack, 0.25f));
+		StartCoroutine(FadeOut(stoppableTrack, fadeTime));
 	}
 
 	// Fades out for fadeTime, or until a new stoppable track is started

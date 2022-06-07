@@ -1481,7 +1481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e3842630410c745aab4feffb368de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camSpeed: {fileID: 11400000, guid: 1ffbb4a5bbdb13a4f9bd94cfd5bd57cb, type: 2}
+  camSpeed: {fileID: 11400000, guid: cf2d9c8caceac8844b22cb75776a648b, type: 2}
 --- !u!114 &212065780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5291,8 +5291,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285333759
-  m_fontColor: {r: 1, g: 0, b: 0.42660618, a: 1}
+    rgba: 4278414076
+  m_fontColor: {r: 0.9882353, g: 0.41568628, b: 0.011764706, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10671,7 +10671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e3842630410c745aab4feffb368de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camSpeed: {fileID: 11400000, guid: 1ffbb4a5bbdb13a4f9bd94cfd5bd57cb, type: 2}
+  camSpeed: {fileID: 11400000, guid: cf2d9c8caceac8844b22cb75776a648b, type: 2}
 --- !u!4 &5159494170158164932
 Transform:
   m_ObjectHideFlags: 0

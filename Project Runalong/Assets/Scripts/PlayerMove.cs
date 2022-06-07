@@ -255,7 +255,7 @@ public class PlayerMove : MonoBehaviour
     private void stopSliding()
     {
         SlidePS.Stop();
-        AudioManager.instance.FadeOutStoppableTrack();
+        AudioManager.instance.FadeOutStoppableTrack(0.25f);
         AC.SetBool("Sliding", false);
         sliding = false;
         MainCollider.enabled = true;
@@ -267,7 +267,7 @@ public class PlayerMove : MonoBehaviour
     {
         //Debug.Log("Stop gliding");
         GlidePS.Stop();
-        AudioManager.instance.FadeOutStoppableTrack();
+        AudioManager.instance.FadeOutStoppableTrack(0.25f);
         AC.SetBool("Gliding", false);
         gliding = false;
         rb.gravityScale = defaultGravity;
